@@ -268,7 +268,7 @@ document.addEventListener('DOMContentLoaded', () => {
     for (const [key, value] of Object.entries(data)) {
       whatsappMessage += `${key}: ${value}\n`;
     }
-    window.open(`https://wa.me/55${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`, '_blank');
+    // window.open(`https://wa.me/55${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`, '_blank');
 
     cancelarAgendamento()
     // addEventListeners();

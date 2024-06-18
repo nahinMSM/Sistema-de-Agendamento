@@ -8,9 +8,9 @@ function displaySavedData() {
     main.style.opacity = '1';
 
     let content = `
-      <div class="btInicio" onclick="cancelarAgendamento()">
+      <button class="btInicio" onclick="cancelarAgendamento()">
         <img src="img/home.svg" alt="Inicio">
-      </div>
+      </button>
       <h2 class="h2Lista">Agendamentos Salvos</h2>`;
 
     agendamentos.forEach(serviceType => {
@@ -21,7 +21,6 @@ function displaySavedData() {
           <div class="lista">
             <button class="deletList" onclick="deleteAppointment('${serviceType}')">
               <img src="img/delet.png" alt="Delete" class="default">
-              <img src="img/deletOutClick.png" alt="Delete" class="hover">
             </button>
             <h3>${serviceType.charAt(0).toUpperCase() + serviceType.slice(1)}</h3>
             <ul>`;
