@@ -1,0 +1,36 @@
+/* header */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(898deg, var(--laranja), var(--amarela));
+  padding: 10px 20px;
+}
+
+header img {
+  height: 50px;
+  margin-right: 10px;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  font-size: 1.2em;
+  color: var(--branca);
+}
+
+.user button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.user img {
+  height: 45px;
+  transition: 0.3s;
+}
+
+.user img:hover {
+  transform: scale(1.1);
+}
+/* header fim */

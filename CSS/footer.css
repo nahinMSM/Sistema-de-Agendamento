@@ -1,0 +1,38 @@
+/* foooter */
+footer {
+  /* position:absolute; */
+  width: 100vw;
+  padding: 10px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: var(--laranja);
+}
+
+footer img {
+  height: 30px;
+  margin-right: 10px;
+}
+
+footer button {
+  background: none;
+  border: none;
+  color: var(--branca);
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+footer .horario p {
+  text-align: center;
+  width: 140px;
+  color: var(--branca);
+}
+
+footer .contato {
+  display: flex;
+  font-size: 12px;
+  color: var(--branca);
+  text-decoration: none;
+}
+/* footer fim */
