@@ -88,10 +88,33 @@ main::-webkit-scrollbar {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 20px;
+  gap: 30px;
   padding: 0 20px;
 }
 
+.service-btn {
+  background: var(--laranja);
+  color: var(--branca);
+  border: none;
+  border-radius: 50%;
+  box-shadow: 1px 1px 10px black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  opacity: 90%;
+}
+
+.service-btn span {
+  text-shadow: 2px 2px 4px black;
+  font-weight: 900;
+}
+
+.service-btn img {
+  border-radius: 50%;
+  height: 70px;
+  width: 90px;
+}
 
 .contener {
   /* position: relative; */
@@ -158,40 +181,12 @@ h3 {
   width: 20px;
 }
 
-.service-btn {
-  background: var(--laranja);
-  color: var(--branca);
-  font-weight: 300;
-  border: none;
-  border-radius: 50%;
-  box-shadow: 1px 1px 10px black;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
-  cursor: pointer;
-  transition: 0.3s;
-  opacity: 90%;
-}
-
 button {
   -webkit-tap-highlight-color: transparent;
 }
 
 button:focus {
   outline: none;
-}
-
-.service-btn:hover {
-  transform: scale(1.1);
-  opacity: 1;
-  border: none;
-}
-
-.service-btn img {
-  border-radius: 50%;
-  height: 70px;
-  width: 90px;
 }
 
 footer {
@@ -212,7 +207,7 @@ footer {
 }
 
 footer img {
-  height: 60px;
+  /* height: 60px; */
   /* margin-right: 10px; */
 }
 
@@ -236,15 +231,15 @@ footer .horario p {
   flex-direction: column;
   align-items: center;
   gap: 2px;
+  font-weight: 700;
 }
 
-footer .location-btn {
-  border: none;
+footer .location-btn img {
+  height: 60px;
 }
 
-footer .contato {
-  padding: 0;
-  border-radius: 50%;
+footer .contato img {
+  height: 50px;
 }
 
 @media (max-width: 1024px) {
