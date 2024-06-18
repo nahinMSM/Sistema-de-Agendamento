@@ -106,7 +106,7 @@ main::-webkit-scrollbar {
 }
 
 .service-btn span {
-  text-shadow: 2px 2px 4px black;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.852);
   font-weight: 900;
 }
 
@@ -201,14 +201,10 @@ footer {
   align-items: center;
   background-color: var(--laranja);
   margin-bottom: 0;
-  padding: 7px 0;
+  padding-top: 7px;
+  padding-bottom: 100px;
   box-shadow: 1px 1px 10px black;
   /* 898 */
-}
-
-footer img {
-  /* height: 60px; */
-  /* margin-right: 10px; */
 }
 
 footer button {
