@@ -88,7 +88,7 @@ main::-webkit-scrollbar {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 30px;
+  gap: 20px;
   padding: 0 20px;
 }
 
@@ -190,8 +190,8 @@ button:focus {
 
 .service-btn img {
   border-radius: 50%;
-  height: 80px;
-  width: 100px;
+  height: 70px;
+  width: 90px;
 }
 
 footer {
@@ -203,10 +203,12 @@ footer {
   display: flex;
   /* justify-content: space-between; */
   justify-content: space-around;
-  /* align-items: center; */
+  align-items: center;
   background-color: var(--laranja);
   margin-bottom: 0;
-  /* box-shadow: 1px 1px 10px black; */
+  padding: 7px 0;
+  box-shadow: 1px 1px 10px black;
+  /* 898 */
 }
 
 footer img {
@@ -223,16 +225,11 @@ footer button {
   cursor: pointer;
 }
 
-/* footer .horario { */
-/* box-sizing: border-box; */
-/* height: 100px; */
-/* display: flex;
-  flex-direction: column; */
-
-/* background-color: aqua; */
-/* padding: 0; */
-/* margin: -10px; */
-/* } */
+footer .horario {
+  display: flex;
+  /* flex-direction: column; */
+  gap: 10px;
+}
 
 footer .horario p {
   display: flex;
