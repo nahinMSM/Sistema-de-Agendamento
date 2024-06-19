@@ -38,7 +38,7 @@ header {
   display: flex;
   align-items: center;
   gap: 10px;
-  font-size: 1.2em;
+  font-size: 14px;
 }
 
 .title img {
@@ -117,19 +117,17 @@ main::-webkit-scrollbar {
 }
 
 .contener {
-  /* position: relative; */
   margin: 0 auto;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* justify-content: center; */
-  /* background-color: aqua; */
 }
 
 
 h2 {
   text-align: center;
+  font-size: 18px;
   color: var(--branca);
   padding: 7px 0;
   border-radius: 5px;
@@ -156,12 +154,9 @@ h3 {
 .lista {
   position: relative;
   margin: 0 auto;
-  /* background-color: var(--laranja); */
   color: var(--laranja);
   padding: 5px 50px;
-  /* border-radius: 5px; */
   border-bottom: 1px solid var(--laranja);
-  /* box-shadow: 0 0 0 rgba(0, 0, 0, 0.423); */
 }
 
 .deletList {
@@ -170,7 +165,6 @@ h3 {
   right: 1px;
   background: none;
   border: none;
-  cursor: pointer;
   background-color: var(--laranja);
   border-radius: 50%;
   padding: 7px;
@@ -191,12 +185,9 @@ button:focus {
 
 footer {
   width: 100vw;
-  /* height: 50px; */
   font-size: 14px;
   color: var(--branca);
-  /* justify-content: center; */
   display: flex;
-  /* justify-content: space-between; */
   justify-content: space-around;
   align-items: center;
   background-color: var(--laranja);
@@ -204,21 +195,16 @@ footer {
   padding-top: 7px;
   padding-bottom: 90px;
   box-shadow: 1px 1px 10px black;
-  /* 898 */
 }
 
 footer button {
   background: none;
   border: none;
   color: var(--branca);
-  display: flex;
-  align-items: center;
-  cursor: pointer;
 }
 
 footer .horario {
   display: flex;
-  /* flex-direction: column; */
   gap: 10px;
 }
 
@@ -239,25 +225,9 @@ footer .contato img {
 }
 
 @media (max-width: 1024px) {
-  /* main {
-    width: 90%;
-
-  } */
 
   h2 {
-    font-size: 18px;
-  }
-
-  /* .h2Lista {
-    width: 70%;
-    margin: 0 auto;
-    margin-bottom: 10px;
-    text-align: center;
-  } */
-
-  main .btInicio {
-    left: 5px;
-    top: 85px;
+    /* font-size: 18px; */
   }
 
   /* h3 {
@@ -265,7 +235,7 @@ footer .contato img {
   } */
 
   .title {
-    font-size: 14px;
+    /* font-size: 14px; */
   }
 
   .contener form {
@@ -278,18 +248,14 @@ footer .contato img {
     margin: 0 auto;
   }
 
-  footer button p {
-    display: none;
-  }
-
 }
 
 .btInicio {
   position: absolute;
   height: 40px;
   width: 40px;
-  margin-top: 10px;
-  margin-left: 5px;
+  left: 7px;
+  top: 95px;
   background-color: #ff5b35;
   border: none;
   border-radius: 50%;
