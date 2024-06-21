@@ -1,15 +1,26 @@
+main {
+  width: 90%;
+  margin: 0 auto;
+  overflow-x: hidden;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+main::-webkit-scrollbar {
+  display: none;
+}
+
 .btServico {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 40px;
+  gap: 30px;
   padding: 0 20px;
 }
 
-.btn {
+.service-btn {
   background: var(--laranja);
   color: var(--branca);
-  font-weight: 300;
   border: none;
   border-radius: 50%;
   box-shadow: 1px 1px 10px black;
@@ -17,18 +28,24 @@
   flex-direction: column;
   align-items: center;
   padding: 20px;
-  cursor: pointer;
-  transition: 0.3s;
-  opacity: 0.9;
+  opacity: 90%;
 }
 
-.btn:hover {
-  transform: scale(1.1);
-  opacity: 1;
+.service-btn span {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.852);
+  font-weight: 900;
 }
 
-.btn img {
+.service-btn img {
   border-radius: 50%;
-  height: 80px;
-  width: 100px;
+  height: 70px;
+  width: 90px;
+}
+
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button:focus {
+  outline: none;
 }

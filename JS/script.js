@@ -1,14 +1,17 @@
+import validarFormulario from './ValidarForm.js'
+import capturarEInserirValor from './userName.js'
+import validarData from './HoraData.js'
+
 document.addEventListener('DOMContentLoaded', () => {
-  const main = document.querySelector('main');
-  
+  const main = document.querySelector('main')
 
   function showForm(serviceType) {
-    main.innerHTML = '';
-    let formContent = '';
-    main.style.transition = 'opacity 0.3s ease-in-out';
-    main.style.opacity = '0';
+    main.innerHTML = ''
+    let formContent = ''
+    main.style.transition = 'opacity 0.3s ease-in-out'
+    main.style.opacity = '0'
     setTimeout(() => {
-      main.style.opacity = '1';
+      main.style.opacity = '1'
       switch (serviceType) {
         case 'veterinario':
           formContent = `
@@ -19,14 +22,14 @@ document.addEventListener('DOMContentLoaded', () => {
                           <label class="box-cao">
                             <img src="img/cao.png" alt="Cão">
                             <div>
-                              <input type="checkbox" name="animal" value="cão">
+                              <input type="radio" name="animal" value="cão" checked>
                               <p>Cão</p>
                             </div>
                           </label>
                           <label class="box-gato">
                             <img src="img/gato.png" alt="Gato">
                             <div>
-                              <input type="checkbox" name="animal" value="gato">
+                              <input type="radio" name="animal" value="gato">
                               <p>Gato</p>
                             </div>
                           </label>
@@ -54,11 +57,11 @@ document.addEventListener('DOMContentLoaded', () => {
                       </label>
                       
                       <button type="button" class="confirm-btn" data-service="veterinario">Confirmar</button>
-                      <button type="button" class="cancel-btn" onclick="cancelarAgendamento()">Cancelar</button>
+                      <button type="button" class="cancel-btn" onclick="Agendamento()">Cancelar</button>
                   </form>
                 </div>
-              `;
-          break;
+              `
+          break
         case 'estetica':
           formContent = `
                 <div class="contener">
@@ -68,14 +71,14 @@ document.addEventListener('DOMContentLoaded', () => {
                           <label class="box-cao">
                             <img src="img/cao.png" alt="Cão">
                             <div>
-                              <input type="checkbox" name="animal" value="cão">
+                              <input type="radio" name="animal" value="cão" checked>
                               <p>Cão</p>
                             </div>
                           </label>
                           <label class="box-gato">
                             <img src="img/gato.png" alt="Gato">
                             <div>
-                              <input type="checkbox" name="animal" value="gato">
+                              <input type="radio" name="animal" value="gato">
                               <p>Gato</p>
                             </div>
                           </label>
@@ -114,11 +117,11 @@ document.addEventListener('DOMContentLoaded', () => {
                       </label>
 
                       <button type="button" class="confirm-btn" data-service="estetica">Confirmar</button>
-                      <button type="button" class="cancel-btn" onclick="cancelarAgendamento()">Cancelar</button>
+                      <button type="button" class="cancel-btn" onclick="Agendamento()">Cancelar</button>
                   </form>
                 </div>
-              `;
-          break;
+              `
+          break
         case 'daycare':
           formContent = `
                 <div class="contener">
@@ -163,11 +166,11 @@ document.addEventListener('DOMContentLoaded', () => {
                       </label>
 
                       <button type="button" class="confirm-btn" data-service="daycare">Confirmar</button>
-                      <button type="button" class="cancel-btn" onclick="cancelarAgendamento()">Cancelar</button>
+                      <button type="button" class="cancel-btn" onclick="Agendamento()">Cancelar</button>
                   </form>
                 </div>
-              `;
-          break;
+              `
+          break
         case 'festa':
           formContent = `
                 <div class="contener">
@@ -177,14 +180,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     <label class="box-cao">
                       <img src="img/cao.png" alt="Cão">
                     <div>
-                      <input type="checkbox" name="animal" value="cão">
+                      <input type="radio" name="animal" value="cão" checked>
                       <p>Cão</p>
                     </div>
                     </label>
                     <label class="box-gato">
                       <img src="img/gato.png" alt="Gato">
                       <div>
-                        <input type="checkbox" name="animal" value="gato">
+                        <input type="radio" name="animal" value="gato">
                         <p>Gato</p>
                       </div>
                     </label>
@@ -225,103 +228,69 @@ document.addEventListener('DOMContentLoaded', () => {
                       </label>
                       
                       <button type="button" class="confirm-btn" data-service="festa">Confirmar</button>
-                      <button type="button" class="cancel-btn" onclick="cancelarAgendamento()">Cancelar</button>
+                      <button type="button" class="cancel-btn" onclick="Agendamento()">Cancelar</button>
                   </form>
                 </div>
-              `;
-          break;
+              `
+          break
         default:
-          break;
+          break
       }
 
-      main.innerHTML = formContent;
-      validarData();
-      // btConforma();
+      main.innerHTML = formContent
+      validarData()
       setupConfirmButtons()
 
-    }, 300);
+    }, 300)
   }
 
   function handleConfirmation(serviceType) {
-    const form = document.getElementById(`form-${serviceType}`);
-    const isValid = validarFormulario({ target: form, preventDefault: () => {} });
+    const form = document.getElementById(`form-${serviceType}`)
+    const isValid = validarFormulario({ target: form, preventDefault: () => { } })
     if (isValid) {
-      confirmarAgendamento(serviceType);
+      confirmarAgendamento(serviceType)
     }
   }
-  
-  
+
+
   window.confirmarAgendamento = function (serviceType) {
-    
+
     capturarEInserirValor()
-    
-    const form = document.getElementById(`form-${serviceType}`);
-    const formData = new FormData(form);
-    const data = {};
+
+    const form = document.getElementById(`form-${serviceType}`)
+    const formData = new FormData(form)
+    const data = {}
     formData.forEach((value, key) => {
-      
-      data[key] = value;
-    });
-    localStorage.setItem(`agendamento-${serviceType}`, JSON.stringify(data));
-    const whatsappNumber = '79999232104';
-    let whatsappMessage = `Agendamento confirmado para ${serviceType}:\n`;
+
+      data[key] = value
+    })
+    localStorage.setItem(`agendamento-${serviceType}`, JSON.stringify(data))
+    const whatsappNumber = '79999232104'
+    let whatsappMessage = `Agendamento confirmado para ${serviceType}:\n`
     for (const [key, value] of Object.entries(data)) {
-      whatsappMessage += `${key}: ${value}\n`;
+      whatsappMessage += `${key === 'data-horario' ? `${key}: ${formatDateTime(value)}` : `${key}: ${value}`}`
     }
-    // window.open(`https://wa.me/55${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`, '_blank');
+    window.open(`https://wa.me/55${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`, '_blank')
 
-    cancelarAgendamento()
-    // addEventListeners();
+    displaySaveData()
+    addEventListeners()
   }
 
-  function validarFormulario(event) {
-    event.preventDefault();
-    let form = event.target;
-    let inputs = form.querySelectorAll('input, select');
-    let valido = true;
-    let checkboxes = form.querySelectorAll('input[type="checkbox"][name="animal"]')
-    let checkboxValid = Array.from(checkboxes).some(checkbox => checkbox.checked);
-    // console.log(checkboxValid)
-    
-    for (let input of inputs) {
-      if (input.hasAttribute('required') && !input.value.trim()) {
-        input.focus();
-        valido = false;
-        break;
-      } else if (input.type === 'tel' && !/^\d{10,11}$/.test(input.value)) {
-        input.focus();
-        valido = false;
-        break;
-      } else if (input.type === 'datetime-local' && !input.value) {
-        input.focus();
-        valido = false;
-        break;
-      } 
-    //   if (!checkboxValid) {
-    //     input.focus();
-    //     valido = false;
-    //     break;
-    // } 
-    }
-  
-    return valido;
-  }
-  
   function setupConfirmButtons() {
-    let confirmButtons = document.querySelectorAll('.confirm-btn');
+    let confirmButtons = document.querySelectorAll('.confirm-btn')
     confirmButtons.forEach(button => {
       button.addEventListener('click', event => {
-        let serviceType = button.getAttribute('data-service');
-        handleConfirmation(serviceType);
-      });
-    });
+        let serviceType = button.getAttribute('data-service')
+        handleConfirmation(serviceType)
+      })
+    })
   }
 
-  window.cancelarAgendamento = function () {
-    main.style.opacity = '0';
-    main.style.transition = 'opacity 0.3s ease-in-out';
+  window.Agendamento = function () {
+    main.style.opacity = '0'
+    main.style.transition = 'opacity 0.3s ease-in-out'
     setTimeout(() => {
-      main.style.opacity = '1';
+      main.style.opacity = '1'
       main.innerHTML = `
     <div class="btServico">
           <button class="service-btn" id="btn-veterinario">
@@ -341,27 +310,28 @@ document.addEventListener('DOMContentLoaded', () => {
               <span>Salão de Festas</span>
           </button>
     </div>
-      `;
+      `
 
-      addEventListeners();
-    }, 300);
+      addEventListeners()
+    }, 300)
   }
 
   function addEventListeners() {
-    const serviceButtons = document.querySelectorAll('.service-btn');
+    const serviceButtons = document.querySelectorAll('.service-btn')
     serviceButtons.forEach(button => {
       button.addEventListener('click', (e) => {
-        
-        const serviceType = e.currentTarget.id.split('-')[1];
-        showForm(serviceType);
-      });
-    });
+
+        const serviceType = e.currentTarget.id.split('-')[1]
+        showForm(serviceType)
+      })
+    })
   }
 
-  const locationButton = document.querySelector('.location-btn');
+  const locationButton = document.querySelector('.location-btn')
   locationButton.addEventListener('click', () => {
-    window.open('https://www.google.com/maps/search/?api=1&query=Av.+Empresário+José+Carlos+Silva,+N.º+1706+Farolândia,+Aracaju-SE', '_blank');
-  });
+    window.open('https://www.google.com/maps/search/?api=1&query=Av.+Empresário+José+Carlos+Silva,+N.º+1706+Farolândia,+Aracaju-SE', '_blank')
+  })
 
+  Agendamento()
   addEventListeners()
-});
+})

@@ -28,22 +28,19 @@ function validarData() {
     const input = event.target;
     const dataHorario = new Date(input.value)
 
-    // Verificar se é domingo
     if (dataHorario.getDay() === 0) {
       alert("Não abrimos aos domingos!")
-      input.value = "" // Limpa o valor do input
+      input.value = ""
       return
     }
 
-    // Verificar se é feriado
     const mesDia = ("0" + (dataHorario.getMonth() + 1)).slice(-2) + "-" + ("0" + dataHorario.getDate()).slice(-2)
     if (feriados.includes(mesDia)) {
       alert("Não abrimos nos feriados!")
-      input.value = "" // Limpa o valor do input
+      input.value = ""
       return
     }
 
-    // Verificar se o horário está dentro do intervalo permitido
     const diaSemana = dataHorario.getDay()
     const horas = dataHorario.getHours()
     const minutos = dataHorario.getMinutes()
@@ -51,8 +48,10 @@ function validarData() {
     if ((diaSemana >= 1 && diaSemana <= 5 && (horas < 7 || horas > 18 || (horas === 18 && minutos > 0))) ||
       (diaSemana === 6 && (horas < 8 || horas > 13 || (horas === 13 && minutos > 0)))) {
       alert("Horários de atendimento: de segunda a sexta das 7h às 18h, e sábado das 8h às 13h.")
-      input.value = "" // Limpa o valor do input
+      input.value = ""
       return
     }
   })
 }
+
+export default validarData
