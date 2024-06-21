@@ -268,7 +268,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const whatsappNumber = '79999232104'
     let whatsappMessage = `Agendamento confirmado para ${serviceType}:\n`
     for (const [key, value] of Object.entries(data)) {
-      whatsappMessage += `${key === 'data-horario' ? `${key}: ${formatDateTime(value)}` : `${key}: ${value}`}`
+      whatsappMessage += `${key === 'data-horario' ? `${key}: ${formatDateTime(value)}` : `${key}: ${value}`}\n`
     }
     window.open(`https://wa.me/55${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`, '_blank')
 
