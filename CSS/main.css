@@ -11,35 +11,70 @@ main::-webkit-scrollbar {
 }
 
 .btServico {
+  
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 30px;
-  padding: 0 20px;
-}
-
-.service-btn {
-  background: var(--laranja);
-  color: var(--branca);
-  border: none;
-  border-radius: 50%;
-  box-shadow: 1px 1px 10px black;
-  display: flex;
+  /* flex-wrap: wrap; */
   flex-direction: column;
   align-items: center;
-  padding: 20px;
+  /* justify-content: center; */
+  /* gap: 10px; */
+  padding: 0 20px;
+  /* text-align: center; */
   opacity: 90%;
 }
 
+.btServico div {
+  /* width: 100%; */
+  display: flex;
+  /* flex-wrap: wrap; */
+  justify-content: center;
+  gap: 20px;
+}
+
+.service-btn {
+  /* background: var(--laranja); */
+  background: none;
+  
+  border: none;
+  /* border: 5px solid transparent; */
+  /* box-shadow: 1px 1px 10px black; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 20px;
+  /* opacity: 90%; */
+
+  width: 150px;
+  height: 120px;
+  background-image: url('/img/pata2.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
 .service-btn span {
+  color: var(--branca);
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.852);
+  font-size: 11px;
   font-weight: 900;
+  /* background-color: var(--laranja); */
+  /* padding: 2px 5px;
+  border-radius: 4px; */
+  opacity: 1;
+}
+
+.pataD {
+  margin-top: 70px;
 }
 
 .service-btn img {
   border-radius: 50%;
-  height: 70px;
-  width: 90px;
+  height: 35px;
+  background: none;
+  opacity: 1;
+  /* height: 70px; */
+  /* width: 90px; */
 }
 
 button {

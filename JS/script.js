@@ -293,22 +293,27 @@ document.addEventListener('DOMContentLoaded', () => {
       main.style.opacity = '1'
       main.innerHTML = `
     <div class="btServico">
+      <div>
           <button class="service-btn" id="btn-veterinario">
               <img src="img/veterinario.jpg" alt="Veterinário">
               <span>Veterinário</span>
           </button>
-          <button class="service-btn" id="btn-estetica">
+          <button class="service-btn pataD" id="btn-estetica">
               <img src="img/estetica.jpg" alt="Estética">
               <span>Estética</span>
           </button>
+      </div>
+
+      <div>
           <button class="service-btn" id="btn-daycare">
               <img src="img/daycare.jpg" alt="Day Care">
               <span>Day Care</span>
           </button>
-          <button class="service-btn" id="btn-festa">
+          <button class="service-btn pataD" id="btn-festa">
               <img src="img/festa.jpg" alt="Salão de Festa">
               <span>Salão de Festas</span>
           </button>
+      </div>
     </div>
       `
 
