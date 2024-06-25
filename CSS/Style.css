@@ -18,10 +18,8 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background-image: url('/img/bones-and-dots.jpg');
+  /* background-image: url('/img/bones-and-dots.png');
   background-repeat: no-repeat;
-  background-size: cover;
-  /* background-position: center; */
-  /* background-clip: padding-box; */
+  background-size: cover; */
   
 }
