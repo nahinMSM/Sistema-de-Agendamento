@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agendamento de Data e Horário</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f0f0f0;
+      text-align: center;
+    }
+
+    .container {
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .container input {
+      border: none;
+      padding: 10px;
+      outline: none;
+      font-size: 18px;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    .flatpickr-calendar {
+      margin-bottom: 10px;
+    }
+
+    .time-slots {
+      width: 310px;
+      display: none;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .time-slot {
+      padding: 10px;
+      background: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .time-slot.disabled {
+      background: #ccc;
+      cursor: not-allowed;
+    }
+
+    .time-slot.selected {
+      background: #0056b3;
+    }
+
+    .fechar {
+      background-color: red;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <input type="text" id="date-time-picker" placeholder="Selecione uma data">
+    <div class="time-slots" id="time-slots">
+      <button class="time-slot" data-time="08:00">08:00</button>
+      <button class="time-slot" data-time="10:00">10:00</button>
+      <button class="time-slot" data-time="12:00">12:00</button>
+      <button class="time-slot" data-time="14:00">14:00</button>
+      <button class="time-slot" data-time="16:00">16:00</button>
+    </div>
+    <button class="fechar">Fechar</button>
+  </div>
+  
+  <!-- Firebase -->
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
+    import { getDatabase, ref, push, get, child } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-database.js";
+  
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyDq8lI3on5OIGoHjA9wlLJDr8cwZdY1Dos",
+      authDomain: "agendar-data-e-hora.firebaseapp.com",
+      databaseURL: "https://agendar-data-e-hora-default-rtdb.firebaseio.com/", // Adicione a URL do Realtime Database aqui
+      projectId: "agendar-data-e-hora",
+      storageBucket: "agendar-data-e-hora.appspot.com",
+      messagingSenderId: "697403702267",
+      appId: "1:697403702267:web:7435364df78f33afb7a95e"
+    };
+  
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+
+    document.addEventListener('DOMContentLoaded', function () {
+      const dateTimePicker = document.getElementById('date-time-picker');
+      const timeSlotsContainer = document.getElementById('time-slots');
+      const timeSlots = document.querySelectorAll('.time-slot');
+      const fecharBtn = document.querySelector('.fechar');
+
+      let selectedDate = null;
+      let selectedTime = null;
+      let fp = null;
+
+      function initializeFlatpickr(inline) {
+        if (fp) {
+          fp.destroy();
+        }
+        fp = flatpickr(dateTimePicker, {
+          inline: inline,
+          minDate: "today",
+          dateFormat: "d/m/Y",
+          locale: {
+            firstDayOfWeek: 1, // Início da semana na segunda-feira
+            weekdays: {
+              shorthand: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'],
+              longhand: ['Domingo', 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado'],
+            },
+            months: {
+              shorthand: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+              longhand: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+            },
+          },
+          onChange: function (selectedDates, dateStr) {
+            if (dateStr) {
+              selectedDate = dateStr;
+              timeSlotsContainer.style.display = 'flex';
+              resetTimeSlots();
+              fetchReservedTimes(dateStr);
+            } else {
+              timeSlotsContainer.style.display = 'none';
+              selectedDate = null;
+              selectedTime = null;
+            }
+          }
+        });
+      }
+
+      fecharBtn.addEventListener("click", () => {
+        if (selectedDate && selectedTime) {
+          // Salvar horário no Firebase
+          saveReservedTime(selectedDate, selectedTime.getAttribute('data-time'));
+        }
+        // Ocultar os horários e o flatpickr
+        timeSlotsContainer.style.display = 'none';
+        if (fp) {
+          fp.destroy();
+          fp = null;
+        }
+      });
+
+      dateTimePicker.addEventListener("click", () => {
+        // Inicializar o Flatpickr com inline: true
+        initializeFlatpickr(true);
+      });
+
+      // Adicionar evento de clique aos botões de horário
+      timeSlots.forEach(slot => {
+        slot.addEventListener('click', function () {
+          if (!this.classList.contains('disabled')) {
+            if (selectedTime) {
+              selectedTime.classList.remove('selected');
+            }
+            selectedTime = this;
+            selectedTime.classList.add('selected');
+            dateTimePicker.value = `${selectedDate} às ${selectedTime.getAttribute('data-time')}`;
+          }
+        });
+      });
+
+      function resetTimeSlots() {
+        // Habilitar todos os horários e mostrar todos novamente
+        timeSlots.forEach(slot => {
+          slot.classList.remove('disabled');
+          slot.classList.remove('selected');
+        });
+      }
+
+      function saveReservedTime(date, time) {
+        const dbRef = ref(db, 'reservations/' + date.replace(/\//g, '-'));
+        push(dbRef, time).then(() => {
+          // Após salvar no Firebase, desabilitar o horário
+          timeSlots.forEach(slot => {
+            if (slot.getAttribute('data-time') === time) {
+              slot.classList.add('disabled');
+            }
+          });
+        });
+      }
+
+      function fetchReservedTimes(date) {
+        const dbRef = ref(db, 'reservations/' + date.replace(/\//g, '-'));
+        get(dbRef).then((snapshot) => {
+          const reservedTimes = snapshot.val();
+          if (reservedTimes) {
+            Object.values(reservedTimes).forEach(time => {
+              timeSlots.forEach(slot => {
+                if (slot.getAttribute('data-time') === time) {
+                  slot.classList.add('disabled');
+                }
+              });
+            });
+          }
+        });
+      }
+    });
+  </script>
+  <!-- fim Firebase -->
+
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+</body>
+
+</html>
