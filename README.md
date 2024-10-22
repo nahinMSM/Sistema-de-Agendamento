@@ -5,7 +5,7 @@ Este é um projeto de um **Sistema de Agendamento** que permite aos usuários ag
 <br>
 <div style="display: flex; justify-content: space-between;">
    <img src="layout/home.png" alt="Texto alternativo" width="220"/>
-   <img src="layout/agendamento.png" alt="Texto alternativo" width="200"/>
+   <img src="layout/agendamento.png" alt="Texto alternativo" width="220"/>
    <img src="layout/lista-agend.png" alt="Texto alternativo" width="220"/>
 </div>
 
