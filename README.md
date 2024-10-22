@@ -3,9 +3,11 @@
 Este é um projeto de um **Sistema de Agendamento** que permite aos usuários agendar compromissos de maneira fácil e eficiente. O sistema foi desenvolvido usando tecnologias modernas, com foco em simplicidade e usabilidade.
 
 <br>
-<img src="layout/home.png" alt="Texto alternativo" width="250"/>
-<img src="layout/agendamento.png" alt="Texto alternativo" width="250"/>
-<img src="layout/lista-agend.png" alt="Texto alternativo" width="250"/>
+<div style="display: flex; justify-content: space-between;">
+   <img src="layout/home.png" alt="Texto alternativo" width="220"/>
+   <img src="layout/agendamento.png" alt="Texto alternativo" width="200"/>
+   <img src="layout/lista-agend.png" alt="Texto alternativo" width="220"/>
+</div>
 
 ## Funcionalidades
 
