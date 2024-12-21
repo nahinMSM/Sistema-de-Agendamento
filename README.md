@@ -3,11 +3,15 @@
 Este é um projeto de um **Sistema de Agendamento** que permite aos usuários agendar compromissos de maneira fácil e eficiente. O sistema foi desenvolvido usando tecnologias modernas, com foco em simplicidade e usabilidade.
 
 <br>
-<div style="display: flex; justify-content: space-between;">
+<div>
    <img src="layout/home.png" alt="Texto alternativo" width="220"/>
    <img src="layout/agendamento.png" alt="Texto alternativo" width="220"/>
    <img src="layout/lista-agend.png" alt="Texto alternativo" width="220"/>
 </div>
+<br>
+
+***[Clik aqui e visite o APP](https://agendamento-servico-lyrios.netlify.app/)***
+
 
 ## Funcionalidades
 
@@ -21,22 +25,6 @@ Este é um projeto de um **Sistema de Agendamento** que permite aos usuários ag
 - **CSS3**: Para estilização da interface.
 - **JavaScript**: Para implementação das funcionalidades e interatividade.
 - **Bibliotecas adicionais** (opcional): Se você estiver usando algo como Flatpickr ou outra biblioteca, adicione aqui.
-
-## Instalação
-
-Para rodar o projeto localmente, siga os passos abaixo:
-
-1. Clone este repositório:
-   ```bash
-   git clone https://github.com/nahinMSM/Sistema-de-Agendamento.git
-   ```
-
-2. Navegue até o diretório do projeto:
-   ```bash
-   cd Sistema-de-Agendamento
-   ```
-
-3. Abra o arquivo `index.html` no navegador.
 
 ## Uso
 
